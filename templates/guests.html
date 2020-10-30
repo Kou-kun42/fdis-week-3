@@ -9,7 +9,10 @@
     <h1>List of Spookers</h1>
     <ul>
       {% for guest in guests %}
-      <li>{{guest.name}}</li>
+      <li>
+        {{ guest.name }} is bringing {{ guest.plus_one }} and will be wearing {{
+        guest.costume }}!
+      </li>
       {% endfor %}
     </ul>
   </body>

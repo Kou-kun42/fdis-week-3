@@ -6,13 +6,32 @@
     <title>RSVP</title>
   </head>
   <body>
-    <h1>Definite Spookers</h1>
-    {% for guest in guests %} {% if guest.rsvp == True %}
-    <h2>{{guest.name}}</h2>
-    {% endif %} {% endfor %}
-    <h1>Possible Spookers</h1>
-    {% for guest in guests %} {% if guest.rsvp == False %}
-    <h2>{{guest.name}}</h2>
-    {% endif %} {% endfor %}
+    <main>
+      <div class="rsvp-list">
+        <h1>Definite Spookers</h1>
+        {% for guest in guests %} {% if guest.coming %}
+        <h2>{{guest.name}}</h2>
+        {% endif %} {% endfor %}
+        <h1>Possible Spookers</h1>
+        {% for guest in guests %} {% if not guest.coming %}
+        <h2>{{guest.name}}</h2>
+        {% endif %} {% endfor %}
+      </div>
+      <form action="/guests" method="POST">
+        <label for="name">Guest Name</label>
+        <input type="text" name="name" id="name" required />
+        <label for="email">Guest's Email</label>
+        <input type="email" name="email" id="email" required />
+        <label for="plus-one">Guest's Tagalong</label>
+        <input type="text" name="plus-one" id="plus-one" />
+        <label for="phone">Guest's Phone Number</label>
+        <input type="tel" name="phone" id="phone" />
+        <label for="costume">Guest's Costume</label>
+        <input type="text" name="costume" id="costume" required />
+        <label for="coming">Definitely Coming?</label>
+        <input type="checkbox" name="coming" id="coming" />
+        <input type="submit" />
+      </form>
+    </main>
   </body>
 </html>
