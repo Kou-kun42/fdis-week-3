@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RSVP</title>
-  </head>
-  <body>
-    <main>
-      <div class="rsvp-list">
-        <h1>Definite Spookers</h1>
-        {% for guest in guests %} {% if guest.coming %}
-        <h2>{{guest.name}}</h2>
-        {% endif %} {% endfor %}
-        <h1>Possible Spookers</h1>
-        {% for guest in guests %} {% if not guest.coming %}
-        <h2>{{guest.name}}</h2>
-        {% endif %} {% endfor %}
-      </div>
-      <form action="/guests" method="POST">
-        <label for="name">Guest Name</label>
-        <input type="text" name="name" id="name" required />
-        <label for="email">Guest's Email</label>
-        <input type="email" name="email" id="email" required />
-        <label for="plus-one">Guest's Tagalong</label>
-        <input type="text" name="plus-one" id="plus-one" />
-        <label for="phone">Guest's Phone Number</label>
-        <input type="tel" name="phone" id="phone" />
-        <label for="costume">Guest's Costume</label>
-        <input type="text" name="costume" id="costume" required />
-        <label for="coming">Definitely Coming?</label>
-        <input type="checkbox" name="coming" id="coming" />
-        <input type="submit" />
-      </form>
-    </main>
-  </body>
-</html>
+{% extends 'base.html' %} {% block content %}
+<main>
+  <div class="rsvp-list">
+    <h2>Attending:</h2>
+    {% if guests %}
+    <ul>
+      {% for guest in guests %}
+
+      <li>{{guest.name}}</li>
+
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h4>No guests yet!</h4>
+    {% endif %}
+  </div>
+  <form action="/guests" method="POST">
+    <label for="name">Guest Name</label>
+    <input type="text" name="name" id="name" required />
+    <label for="email">Guest's Email</label>
+    <input type="email" name="email" id="email" required />
+    <label for="plus-one">Guest's Tagalong</label>
+    <input type="text" name="plus-one" id="plus-one" />
+    <label for="phone">Guest's Phone Number</label>
+    <input type="tel" name="phone" id="phone" />
+    <input type="submit" />
+  </form>
+</main>
+
+{% endblock %}

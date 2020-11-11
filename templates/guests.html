@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guest List</title>
-  </head>
-  <body>
-    <h1>List of Spookers</h1>
-    <ul>
-      {% for guest in guests %}
-      <li>
-        {{ guest.name }} is bringing {{ guest.plus_one }} and will be wearing {{
-        guest.costume }}!
-      </li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% extends 'base.html' %} {% block content %}
+
+<h1>List of Guests</h1>
+{% if guests %}
+<ul>
+  {% for guest in guests %}
+  <li>{{ guest.name }} is bringing {{ guest.plus_one }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<h3>No guests yet!</h3>
+{% endif %} {% endblock %}
